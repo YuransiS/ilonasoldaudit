@@ -768,16 +768,18 @@
 
         function openModal() {
             modal.classList.remove('hidden');
-            lenis.stop(); // Disable scroll
+            if (typeof lenis !== 'undefined') lenis.stop();
 
-            // Trigger reflow
+            // Force reflow
             void modal.offsetWidth;
 
-            modalBg.classList.add('opacity-100');
+            // Background animate
             modalBg.classList.remove('opacity-0');
+            modalBg.classList.add('opacity-100');
 
+            // Panel animate
             modalPanel.classList.remove('translate-y-full', 'md:translate-y-10', 'scale-95', 'opacity-0');
-            modalPanel.classList.add('translate-y-0', 'scale-100', 'opacity-100');
+            modalPanel.classList.add('translate-y-0', 'md:translate-y-0', 'scale-100', 'opacity-100');
 
             if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', {
                 value: CURRENT_PRICE.current,
@@ -795,7 +797,7 @@
 
             setTimeout(() => {
                 modal.classList.add('hidden');
-                lenis.start(); // Enable scroll
+                if (typeof lenis !== 'undefined') lenis.start(); // Enable scroll if lenis exists
             }, 500);
         }
 
