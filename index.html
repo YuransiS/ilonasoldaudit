@@ -263,8 +263,8 @@
 
             <!-- Pricing block without card -->
             <div class="flex items-center justify-center gap-4 mb-8 fade-up">
-                <span class="text-4xl md:text-5xl font-serif text-gold font-medium dynamic-price text-premium-stroke">390 ₴</span>
-                <span class="text-lg md:text-xl text-cream/40 line-through decoration-gold/50 decoration-1 dynamic-old-price">1790 ₴</span>
+                <span class="text-4xl md:text-5xl font-serif text-gold font-medium dynamic-price text-premium-stroke">390&nbsp;₴</span>
+                <span class="text-lg md:text-xl text-cream/40 line-through decoration-gold/50 decoration-1 dynamic-old-price">1790&nbsp;₴</span>
             </div>
 
             <button onclick="openModal()" class="btn-premium w-full max-w-[340px] py-5 text-sm font-semibold magnetic relative overflow-hidden group shadow-gold/20 fade-up">
@@ -537,7 +537,7 @@
                     <h2 class="text-3xl font-serif text-charcoal mb-4">100% Гарантія повернення</h2>
                     <p class="text-charcoal-light text-lg mb-6 leading-relaxed">
                         Якщо після сесії ти не отримаєш жодного нового розуміння своєї ситуації — я поверну тобі всі
-                        <span class="font-bold text-charcoal dynamic-price-inline whitespace-nowrap text-premium-stroke/10">390 ₴</span> без зайвих питань.
+                        <span class="font-bold text-charcoal dynamic-price-inline whitespace-nowrap">390&nbsp;₴</span> без зайвих питань.
                     </p>
                     <p class="text-gold-dark font-medium italic">
                         Ти нічим не ризикуєш. Крім звички жити без бажання.
@@ -693,7 +693,7 @@
 
         // Sticky Mobile CTA
         ScrollTrigger.create({
-            trigger: "#hero-card",
+            trigger: "header",
             start: "bottom top",
             onEnter: () => document.getElementById('sticky-cta')?.classList.remove('translate-y-full'),
             onLeaveBack: () => document.getElementById('sticky-cta')?.classList.add('translate-y-full'),
