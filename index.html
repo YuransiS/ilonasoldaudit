@@ -251,35 +251,29 @@
             </div>
         </div>
 
-        <!-- Lower part: Title + Description + Card -->
+        <!-- Lower part: Title + Description + Pricing + Button -->
         <div class="relative z-20 w-full max-w-lg mx-auto flex flex-col items-center text-center stagger-section">
-            <h1 class="text-clamp-h1 font-serif text-cream mb-4 fade-up text-premium-stroke">
+            <h1 class="text-clamp-h1 font-serif text-cream mb-4 fade-up text-premium-stroke max-w-[12ch] md:max-w-none">
                 Як повернути <br />
                 <span class="text-gold italic normal-case">пристрасть</span> <br />
                 у стосунках
             </h1>
 
-            <p class="text-clamp-p text-cream/80 max-w-md mx-auto font-light mb-8 fade-up leading-tight">
+            <p class="text-clamp-p text-cream/80 max-w-md mx-auto font-light mb-6 fade-up leading-tight">
                 Якщо ти більше його не хочеш — але він дає тобі все.
                 Без ігор, маніпуляцій і спроб стати іншою.
             </p>
 
-            <div class="bg-charcoal/40 backdrop-blur-xl border border-gold/20 rounded-[32px] p-8 md:p-10 w-full fade-up shadow-2xl relative overflow-hidden" id="hero-card">
-                <!-- Inner glow -->
-                <div class="absolute -top-10 -right-10 w-32 h-32 bg-gold/10 blur-3xl rounded-full"></div>
-                
-                <div class="flex flex-col items-center gap-2 mb-6 relative z-10">
-                    <div class="flex items-baseline gap-4">
-                        <span class="text-5xl font-serif text-cream font-medium dynamic-price text-premium-stroke">390 ₴</span>
-                        <span class="text-xl text-cream/40 line-through decoration-gold/50 decoration-1 dynamic-old-price">1790 ₴</span>
-                    </div>
-                </div>
-
-                <button onclick="openModal()" class="btn-premium w-full py-5 text-sm font-semibold magnetic relative overflow-hidden group shadow-gold/20">
-                    <span class="relative z-10">Хочу розпалити пристрасть</span>
-                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
-                </button>
+            <!-- Pricing block without card -->
+            <div class="flex items-center justify-center gap-4 mb-8 fade-up">
+                <span class="text-4xl md:text-5xl font-serif text-gold font-medium dynamic-price text-premium-stroke">390 ₴</span>
+                <span class="text-lg md:text-xl text-cream/40 line-through decoration-gold/50 decoration-1 dynamic-old-price">1790 ₴</span>
             </div>
+
+            <button onclick="openModal()" class="btn-premium w-full max-w-[340px] py-5 text-sm font-semibold magnetic relative overflow-hidden group shadow-gold/20 fade-up">
+                <span class="relative z-10">Хочу розпалити пристрасть</span>
+                <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
+            </button>
         </div>
     </header>
 
@@ -669,23 +663,25 @@
 
         lucide.createIcons();
 
-        // Lenis Smooth Scroll Setup
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-            infinite: false,
-        });
-        function raf(time) {
-            lenis.raf(time);
+        // Lenis Smooth Scroll Setup - Only for Desktop
+        if (window.innerWidth > 1024) {
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: 'vertical',
+                gestureDirection: 'vertical',
+                smooth: true,
+                mouseMultiplier: 1,
+                smoothTouch: false,
+                touchMultiplier: 2,
+                infinite: false,
+            });
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
             requestAnimationFrame(raf);
         }
-        requestAnimationFrame(raf);
 
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
