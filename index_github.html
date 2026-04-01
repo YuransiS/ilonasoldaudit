@@ -194,15 +194,6 @@
         .lenis.lenis-stopped {
             overflow: hidden;
         }
-
-        /* Test Mode Hider */
-        .test-mode-locked .dynamic-price,
-        .test-mode-locked .dynamic-old-price,
-        .test-mode-locked .dynamic-price-inline,
-        .test-mode-locked button[onclick*="openModal"],
-        .test-mode-locked #sticky-cta {
-            display: none !important;
-        }
     </style>
 
     <!-- Meta Pixel Code -->
@@ -233,30 +224,6 @@
         };
         const CURRENT_PRICE = (PRICING[new URLSearchParams(window.location.search).get('price')] || PRICING['default']);
         const CURRENCY_SYMBOL = '₴';
-        // Secret action for test mode
-        (function() {
-            const isTestPage = new URLSearchParams(window.location.search).get('price') === 'test';
-            if (isTestPage) {
-                const K = '_usr_t_st_';
-                if (localStorage.getItem(K) !== 'true') {
-                    document.documentElement.classList.add('test-mode-locked');
-                }
-                window.addEventListener('DOMContentLoaded', () => {
-                    let clickCount = 0;
-                    const heroTitle = document.querySelector('h1');
-                    if (heroTitle) {
-                        heroTitle.addEventListener('click', () => {
-                            clickCount++;
-                            if (clickCount >= 10) {
-                                document.documentElement.classList.remove('test-mode-locked');
-                                localStorage.setItem(K, 'true');
-                                gsap.fromTo('body', { opacity: 0.8 }, { opacity: 1, duration: 0.5 });
-                            }
-                        });
-                    }
-                });
-            }
-        })();
     </script>
 </head>
 
@@ -296,18 +263,13 @@
 
             <!-- Pricing block without card -->
             <div class="flex items-center justify-center gap-4 mb-8 fade-up">
-                <span
-                    class="text-4xl md:text-5xl font-serif text-gold font-medium dynamic-price text-premium-stroke">390&nbsp;₴</span>
-                <span
-                    class="text-lg md:text-xl text-cream/40 line-through decoration-gold/50 decoration-1 dynamic-old-price">1790&nbsp;₴</span>
+                <span class="text-4xl md:text-5xl font-serif text-gold font-medium dynamic-price text-premium-stroke">390 ₴</span>
+                <span class="text-lg md:text-xl text-cream/40 line-through decoration-gold/50 decoration-1 dynamic-old-price">1790 ₴</span>
             </div>
 
-            <button onclick="openModal()"
-                class="btn-premium w-full max-w-[340px] py-5 text-sm font-semibold magnetic relative overflow-hidden group shadow-gold/20 fade-up">
+            <button onclick="openModal()" class="btn-premium w-full max-w-[340px] py-5 text-sm font-semibold magnetic relative overflow-hidden group shadow-gold/20 fade-up">
                 <span class="relative z-10">Хочу розпалити пристрасть</span>
-                <div
-                    class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                </div>
+                <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
             </button>
         </div>
     </header>
@@ -322,8 +284,7 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="premium-card p-8 fade-up">
                     <h3 class="text-charcoal font-bold text-lg mb-4 capitalize"><span
-                            class="text-gold uppercase text-[11px] tracking-wider font-bold block mb-3 opacity-90">Симптом
-                            перший</span> Він хороший. Але я його не хочу.</h3>
+                            class="text-gold uppercase text-[11px] tracking-wider font-bold block mb-3 opacity-90">Симптом перший</span> Він хороший. Але я його не хочу.</h3>
                     <p class="text-charcoal-light font-light leading-relaxed">
                         Він турбується, забезпечує. Ти знаєш, що тобі з ним добре і водночас у ліжку хочеться просто
                         спати. Без збудження, без іскри.
@@ -332,8 +293,7 @@
 
                 <div class="premium-card p-8 fade-up">
                     <h3 class="text-charcoal font-bold text-lg mb-4 capitalize"><span
-                            class="text-gold uppercase text-[11px] tracking-wider font-bold block mb-3 opacity-90">Симптом
-                            другий</span> Я не розумію, коли це зникло.</h3>
+                            class="text-gold uppercase text-[11px] tracking-wider font-bold block mb-3 opacity-90">Симптом другий</span> Я не розумію, коли це зникло.</h3>
                     <p class="text-charcoal-light font-light leading-relaxed">
                         Колись була хімія. А зараз — побут, рутина і відчуття, що ви більше партнери по господарству,
                         ніж коханці.
@@ -342,8 +302,7 @@
 
                 <div class="premium-card p-8 fade-up">
                     <h3 class="text-charcoal font-bold text-lg mb-4 capitalize"><span
-                            class="text-gold uppercase text-[11px] tracking-wider font-bold block mb-3 opacity-90">Симптом
-                            третій</span> Я боюся, що це назавжди.</h3>
+                            class="text-gold uppercase text-[11px] tracking-wider font-bold block mb-3 opacity-90">Симптом третій</span> Я боюся, що це назавжди.</h3>
                     <p class="text-charcoal-light font-light leading-relaxed">
                         Що якщо це кінець? Що якщо бажання не повернеться? Ти або терпиш без близькості, або думаєш про
                         те, чого соромишся.
@@ -352,8 +311,7 @@
 
                 <div class="premium-card p-8 fade-up">
                     <h3 class="text-charcoal font-bold text-lg mb-4 capitalize"><span
-                            class="text-gold uppercase text-[11px] tracking-wider font-bold block mb-3 opacity-90">Симптом
-                            четвертий</span> Я спробувала нове — не допомогло.</h3>
+                            class="text-gold uppercase text-[11px] tracking-wider font-bold block mb-3 opacity-90">Симптом четвертий</span> Я спробувала нове — не допомогло.</h3>
                     <p class="text-charcoal-light font-light leading-relaxed">
                         Білизна, відпустка, розмови. На тиждень ставало краще, а потім знову порожнеча.
                     </p>
@@ -579,8 +537,7 @@
                     <h2 class="text-3xl font-serif text-charcoal mb-4">100% Гарантія повернення</h2>
                     <p class="text-charcoal-light text-lg mb-6 leading-relaxed">
                         Якщо після сесії ти не отримаєш жодного нового розуміння своєї ситуації — я поверну тобі всі
-                        <span class="font-bold text-charcoal dynamic-price-inline whitespace-nowrap">390&nbsp;₴</span>
-                        без зайвих питань.
+                        <span class="font-bold text-charcoal dynamic-price-inline whitespace-nowrap text-premium-stroke/10">390 ₴</span> без зайвих питань.
                     </p>
                     <p class="text-gold-dark font-medium italic">
                         Ти нічим не ризикуєш. Крім звички жити без бажання.
@@ -736,7 +693,7 @@
 
         // Sticky Mobile CTA
         ScrollTrigger.create({
-            trigger: "header",
+            trigger: "#hero-card",
             start: "bottom top",
             onEnter: () => document.getElementById('sticky-cta')?.classList.remove('translate-y-full'),
             onLeaveBack: () => document.getElementById('sticky-cta')?.classList.add('translate-y-full'),
