@@ -234,7 +234,7 @@
         const CURRENT_PRICE = (PRICING[new URLSearchParams(window.location.search).get('price')] || PRICING['default']);
         const CURRENCY_SYMBOL = '₴';
         // Secret action for test mode
-        (function() {
+        (function () {
             const isTestPage = new URLSearchParams(window.location.search).get('price') === 'test';
             if (isTestPage) {
                 const K = '_usr_t_st_';
@@ -695,7 +695,9 @@
     <script>
         // --- CONFIG ---
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzQFF2jg87YSoQoh6YchHNuTY22BADTnhCzSSrbIPIZpHdi9DTt5QiD58wQW0F24bBHBw/exec';
-        const RETURN_URL = 'https://ilonasoldaudit.vercel.app/thanks.html';
+        const SUCCESS_URL = 'https://ilonasoldaudit.vercel.app/thanks.html';
+        const FAILURE_URL = 'https://ilonasoldaudit.vercel.app/fail.html';
+        const RETURN_URL = SUCCESS_URL; // Keep for backward compatibility with Google Script if needed
 
         lucide.createIcons();
 
@@ -915,6 +917,8 @@
                             'productPrice[]': pd.productPrice,
                             'merchantSignature': pd.merchantSignature,
                             'returnUrl': pd.returnUrl,
+                            'approvedUrl': SUCCESS_URL,
+                            'declinedUrl': FAILURE_URL,
                             'serviceUrl': pd.serviceUrl,
                             'clientFirstName': pd.clientFirstName,
                             'clientPhone': pd.clientPhone
